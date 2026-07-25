@@ -1,0 +1,129 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  ADMIN
+  FINANCE
+  ADMISSIONS
+  COUNSELLOR
+  VIEWER
+}
+
+enum PaymentType {
+  TUITION_FEE
+  ADMISSION_FEE
+  EXAM_FEE
+  TRANSPORT_FEE
+  HOSTEL_FEE
+  LIBRARY_FEE
+  LAB_FEE
+  OTHER
+}
+
+enum PaymentMode {
+  CASH
+  CHEQUE
+  UPI
+  BANK_TRANSFER
+  CREDIT_CARD
+  DEBIT_CARD
+  DD
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  PAID
+  OVERDUE
+  CANCELLED
+}
+
+model Profile {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  email     String   @unique
+  role      Role     @default(VIEWER)
+  fullName  String
+  avatarUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  receipts  Receipt[]
+}
+
+model Student {
+  id            String   @id @default(cuid())
+  name          String
+  parentName    String?
+  applicationId String?
+  program       String
+  academicYear  String
+  mobile        String?
+  email         String?
+  address       String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  receipts  Receipt[]
+  payments  Payment[]
+  invoices  Invoice[]
+}
+
+model Receipt {
+  id             String      @id @default(cuid())
+  receiptNumber  String      @unique
+  studentId      String
+  paymentType    PaymentType
+  amount         Float
+  paymentMode    PaymentMode
+  transactionId  String?
+  date           DateTime
+  remarks        String?
+  pdfUrl         String?
+  createdAt      DateTime    @default(now())
+
+  generatedById  String
+  generatedBy    Profile     @relation(fields: [generatedById], references: [id])
+  student        Student     @relation(fields: [studentId], references: [id])
+}
+
+model Payment {
+  id            String      @id @default(cuid())
+  studentId     String
+  amount        Float
+  paymentType   PaymentType
+  paymentMode   PaymentMode
+  transactionId String?
+  date          DateTime
+  remarks       String?
+  createdAt     DateTime    @default(now())
+
+  student       Student     @relation(fields: [studentId], references: [id])
+}
+
+model Invoice {
+  id            String        @id @default(cuid())
+  studentId     String
+  amount        Float
+  dueDate       DateTime
+  status        InvoiceStatus @default(DRAFT)
+  invoiceNumber String        @unique
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  student       Student       @relation(fields: [studentId], references: [id])
+}
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
