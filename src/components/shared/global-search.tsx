@@ -42,7 +42,7 @@ export function GlobalSearch({ open, onClose }: Props) {
 
   const grouped = useMemo(() => {
     const g: Record<string, SearchResult[]> = {};
-    for (const r of results) { const l = typeLabels[r.type]; if (!g[l]) g[l] = []; g[l].push(r); }
+    for (const r of results) { const l = typeLabels[r.type] ?? "Other"; if (!g[l]) g[l] = []; g[l].push(r); }
     return Object.entries(g);
   }, [results]);
 
