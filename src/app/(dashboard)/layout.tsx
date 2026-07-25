@@ -1,32 +1,38 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { type ReactNode } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Sidebar } from "@/components/layout/sidebar";
+import { MobileSidebar } from "@/components/layout/mobile-sidebar";
+import { Header } from "@/components/layout/header";
+import { useSidebar } from "@/hooks/use-sidebar";
+import { cn } from "@/lib/utils";
+import { pageTransition } from "@/lib/animations";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex min-h-screen">
-      {/* Sidebar placeholder */}
-      <aside className="hidden lg:flex w-64 flex-col border-r border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
-        <div className="flex h-14 items-center border-b border-neutral-200 dark:border-neutral-700 px-4">
-          <span className="text-sm font-semibold text-primary-500">
-            LeapStart FA
-          </span>
-        </div>
-        <nav className="flex-1 p-3 space-y-1">
-          {/* Nav items will be rendered here */}
-          <p className="text-xs text-neutral-400 dark:text-neutral-500 px-2 py-1">
-            Navigation — coming soon
-          </p>
-        </nav>
-      </aside>
+  const pathname = usePathname();
+  const { collapsed, mobileOpen, toggleCollapsed, toggleMobile, closeMobile } = useSidebar();
 
-      {/* Main content */}
-      <main className="flex-1 overflow-auto">
-        <header className="sticky top-0 z-sticky flex h-14 items-center border-b border-neutral-200 dark:border-neutral-700 bg-white/80 dark:bg-neutral-800/80 backdrop-blur-glass px-6">
-          <p className="text-sm text-neutral-500 dark:text-neutral-400">
-            Header — coming soon
-          </p>
-        </header>
-        <div className="p-8">{children}</div>
-      </main>
-    </div>
+  return (
+    <TooltipProvider delayDuration={300}>
+      <div className="flex min-h-screen bg-neutral-50 dark:bg-[#0B1220]">
+        <Sidebar collapsed={collapsed} onToggle={toggleCollapsed} />
+        <MobileSidebar open={mobileOpen} onClose={closeMobile} />
+        <main className={cn("flex-1 flex flex-col min-h-screen transition-all duration-250", "md:ml-[72px]", !collapsed && "md:ml-64")}>
+          <Header onMenuClick={toggleMobile} />
+          <div className="flex-1 overflow-auto">
+            <div className="max-w-[1280px] mx-auto w-full p-4 sm:p-6 lg:p-8">
+              <AnimatePresence mode="wait">
+                <motion.div key={pathname} variants={pageTransition} initial="initial" animate="animate" exit="exit" transition={{ duration: 0.2 }}>
+                  {children}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </main>
+      </div>
+    </TooltipProvider>
   );
 }
