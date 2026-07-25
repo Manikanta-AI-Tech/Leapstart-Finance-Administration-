@@ -2,7 +2,6 @@
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useRef, useState } from "react";
-import type { Receipt } from "@/types/database";
 import type { ReceiptFormData, ReceiptFilters } from "@/types/receipt";
 import type { ReceiptSearchFilters } from "@/services/receipt.service";
 import {
@@ -118,7 +117,7 @@ export function useReceiptExport() {
         toast.loading("Generating Excel file...");
         await exportReceiptsToExcel(receipts);
         toast.success("Excel exported successfully!");
-      } catch (error) {
+      } catch {
         toast.error("Failed to export Excel");
       } finally {
         exportingRef.current = false;
@@ -135,7 +134,7 @@ export function useReceiptExport() {
         toast.loading("Generating PDF file...");
         await exportReceiptsToPDF(receipts);
         toast.success("PDF exported successfully!");
-      } catch (error) {
+      } catch {
         toast.error("Failed to export PDF");
       } finally {
         exportingRef.current = false;

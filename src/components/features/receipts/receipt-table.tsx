@@ -75,7 +75,7 @@ export function ReceiptTable({
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
 
-  const columns = useMemo<ColumnDef<EnrichedReceipt, any>[]>(
+  const columns = useMemo<ColumnDef<EnrichedReceipt>[]>(
     () => [
       columnHelper.accessor("receiptNumber", {
         header: "Receipt #",
@@ -353,7 +353,7 @@ export function ReceiptTable({
                 {headerGroup.headers.map((header) => {
                   const isSortable = header.column.getCanSort();
                   const align =
-                    (header.column.columnDef.meta as any)?.align ?? "left";
+                    (header.column.columnDef.meta as { align?: string } | undefined)?.align ?? "left";
 
                   return (
                     <TableHead
@@ -396,7 +396,7 @@ export function ReceiptTable({
               >
                 {row.getVisibleCells().map((cell) => {
                   const align =
-                    (cell.column.columnDef.meta as any)?.align ?? "left";
+                    (cell.column.columnDef.meta as { align?: string } | undefined)?.align ?? "left";
                   return (
                     <TableCell
                       key={cell.id}

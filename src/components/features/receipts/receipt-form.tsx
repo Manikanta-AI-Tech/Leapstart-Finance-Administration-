@@ -165,11 +165,8 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
 
 export function ReceiptForm({ onSuccess }: ReceiptFormProps) {
   const [currentStep, setCurrentStep] = useState(1);
-  const [direction, setDirection] = useState<"forward" | "back">("forward");
   const [pdfBlob, setPdfBlob] = useState<Blob | null>(null);
   const [generatedReceiptNumber, setGeneratedReceiptNumber] = useState<string>("");
-  const [generatedReceipt, setGeneratedReceipt] = useState<Receipt | null>(null);
-  const [generatedPdfData, setGeneratedPdfData] = useState<ReceiptPDFData | null>(null);
 
   const createMutation = useCreateReceipt();
 
@@ -209,12 +206,10 @@ export function ReceiptForm({ onSuccess }: ReceiptFormProps) {
     );
     if (!valid) return;
 
-    setDirection("forward");
     setCurrentStep((prev) => Math.min(prev + 1, 4));
   }, [currentStep, trigger]);
 
   const goBack = useCallback(() => {
-    setDirection("back");
     setCurrentStep((prev) => Math.max(prev - 1, 1));
   }, []);
 
@@ -229,8 +224,6 @@ export function ReceiptForm({ onSuccess }: ReceiptFormProps) {
     createMutation.mutate(formData, {
       onSuccess: async ({ receipt, pdfData }) => {
         setGeneratedReceiptNumber(receipt.receiptNumber);
-        setGeneratedReceipt(receipt);
-        setGeneratedPdfData(pdfData);
 
         // Generate PDF blob using dynamic import
         try {

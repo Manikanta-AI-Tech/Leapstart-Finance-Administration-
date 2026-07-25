@@ -8,12 +8,12 @@ export async function getStudents(): Promise<Student[]> {
   return [];
 }
 
-export async function getStudentById(id: string): Promise<Student | null> {
+export async function getStudentById(_id: string): Promise<Student | null> {
   // Stub: Implement when backend is ready
   return null;
 }
 
-export async function createStudent(data: StudentFormData): Promise<Student | null> {
+export async function createStudent(_data: StudentFormData): Promise<Student | null> {
   // Stub: Implement when backend is ready
   return null;
 }

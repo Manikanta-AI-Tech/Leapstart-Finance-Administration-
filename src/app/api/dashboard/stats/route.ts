@@ -5,8 +5,8 @@ export async function GET() {
   try {
     const stats = await getDashboardStats();
     return NextResponse.json(stats);
-  } catch (error) {
-    console.error("Failed to fetch dashboard stats:", error);
+  } catch (_error) {
+    console.error("Failed to fetch dashboard stats:", _error);
     return NextResponse.json(
       { error: "Failed to fetch dashboard stats" },
       { status: 500 },

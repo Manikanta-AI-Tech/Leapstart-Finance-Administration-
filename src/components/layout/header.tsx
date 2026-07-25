@@ -1,9 +1,8 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, Search, LogOut, Settings, User } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Notifications } from "@/components/shared/notifications";

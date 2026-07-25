@@ -12,7 +12,6 @@ import { createClient } from "@/lib/supabase/client";
 import type { User } from "@supabase/supabase-js";
 import type { Profile } from "@/types/database";
 import type { Role } from "@/lib/constants";
-import { ROLES } from "@/lib/constants";
 
 const ROLE_HIERARCHY: Record<Role, number> = {
   ADMIN: 4,

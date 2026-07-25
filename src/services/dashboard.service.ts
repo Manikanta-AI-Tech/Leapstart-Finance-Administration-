@@ -112,9 +112,6 @@ let _mockPayments: RecentPayment[] | undefined;
 let _mockDues: UpcomingDue[] | undefined;
 
 function generateMockStats(): DashboardStats {
-  const now = new Date();
-  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-
   return {
     todayCollection: 124500,
     todayCollectionTrend: 12.5,

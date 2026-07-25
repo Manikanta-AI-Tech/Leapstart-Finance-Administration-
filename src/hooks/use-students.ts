@@ -8,7 +8,7 @@ async function fetchStudents(): Promise<Student[]> {
   return [];
 }
 
-async function fetchStudent(id: string): Promise<Student | null> {
+async function fetchStudent(_id: string): Promise<Student | null> {
   return null;
 }
 

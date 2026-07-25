@@ -9,7 +9,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Font,
 } from "@react-pdf/renderer";
 import type { ReceiptPDFData } from "@/types/receipt";
 

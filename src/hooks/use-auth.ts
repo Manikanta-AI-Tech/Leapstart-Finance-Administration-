@@ -4,7 +4,6 @@ import { createClient } from "@/lib/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import type { Profile } from "@/types/database";
 import type { Role } from "@/lib/constants";
-import { ROLES } from "@/lib/constants";
 
 const ROLE_HIERARCHY: Record<Role, number> = {
   ADMIN: 4,

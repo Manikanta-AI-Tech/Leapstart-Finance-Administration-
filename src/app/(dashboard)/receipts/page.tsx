@@ -27,7 +27,7 @@ export default function ReceiptsPage() {
   const router = useRouter();
 
   // ── Seed mock data on mount ────────────────────────────────────
-  const { seed, seeded } = useSeedMockData();
+  const { seed } = useSeedMockData();
   useEffect(() => {
     seed();
   }, [seed]);

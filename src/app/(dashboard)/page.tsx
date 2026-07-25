@@ -6,8 +6,6 @@ import {
   Calendar,
   Clock,
   Receipt,
-  GraduationCap,
-  AlertTriangle,
 } from "lucide-react";
 import { StatCard } from "@/components/features/dashboard/stat-card";
 import { RecentPayments } from "@/components/features/dashboard/recent-payments";

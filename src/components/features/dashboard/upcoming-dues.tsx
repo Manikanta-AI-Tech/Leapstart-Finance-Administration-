@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { UpcomingDue } from "@/services/dashboard.service";
 import { ArrowRight, CheckCircle2 } from "lucide-react";

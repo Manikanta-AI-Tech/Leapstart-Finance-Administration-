@@ -1,9 +1,3 @@
-export const APP_NAME = "LeapStart Finance & Admissions";
-export const APP_DESCRIPTION =
-  "Internal ERP for LeapStart School of Technology";
-export const RECEIPT_PREFIX = "LS";
-export const CURRENT_ACADEMIC_YEAR = "2025-2026";
-
 export const ROLES = [
   "ADMIN",
   "FINANCE",

@@ -8,7 +8,7 @@ export async function getPayments(): Promise<Payment[]> {
   return [];
 }
 
-export async function recordPayment(data: PaymentFormData): Promise<Payment | null> {
+export async function recordPayment(_data: PaymentFormData): Promise<Payment | null> {
   // Stub: Implement when backend is ready
   return null;
 }

@@ -2,7 +2,7 @@ import type { Receipt } from "@/types/database";
 import type { ReceiptFormData, ReceiptPDFData, ReceiptFilters } from "@/types/receipt";
 import { generateReceiptNumber } from "@/lib/receipt-number";
 import { amountToWords } from "@/lib/amount-to-words";
-import { PAYMENT_TYPES, PAYMENT_MODES, type PaymentType, type PaymentMode } from "@/lib/constants";
+import type { PaymentType, PaymentMode } from "@/lib/constants";
 
 // ── Display label maps ────────────────────────────────────────────────
 
@@ -334,6 +334,7 @@ export async function exportReceiptsToPDF(
     r.transactionId ?? "",
   ]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (doc as any).autoTable({
     head: [["Receipt #", "Student", "Parent", "Amount", "Type", "Mode", "Date", "Transaction ID"]],
     body: rows,
