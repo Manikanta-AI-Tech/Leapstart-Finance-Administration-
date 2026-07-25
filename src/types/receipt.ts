@@ -3,12 +3,37 @@ import type { Receipt } from "./database";
 export type { Receipt };
 
 export interface ReceiptFormData {
-  studentId: string;
+  studentName: string;
+  parentName: string;
+  applicationId: string;
+  program: string;
+  academicYear: string;
+  mobile: string;
+  email: string;
   paymentType: string;
-  amount: number;
   paymentMode: string;
+  amount: number;
   transactionId?: string;
-  date: Date;
+  date: string;
+  remarks?: string;
+}
+
+export interface ReceiptPDFData {
+  receiptNo: string;
+  date: string;
+  studentName: string;
+  parentName: string;
+  applicationId: string;
+  program: string;
+  academicYear: string;
+  mobile: string;
+  email: string;
+  paymentType: string;
+  paymentMode: string;
+  amount: number;
+  transactionId?: string;
+  paymentDate: string;
+  amountInWords: string;
   remarks?: string;
 }
 
