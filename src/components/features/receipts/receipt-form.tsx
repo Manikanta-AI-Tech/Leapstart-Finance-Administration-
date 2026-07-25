@@ -165,6 +165,7 @@ function StepIndicator({ currentStep }: { currentStep: number }) {
 
 export function ReceiptForm({ onSuccess }: ReceiptFormProps) {
   const [currentStep, setCurrentStep] = useState(1);
+  const [direction, setDirection] = useState<"forward" | "backward">("forward");
   const [pdfBlob, setPdfBlob] = useState<Blob | null>(null);
   const [generatedReceiptNumber, setGeneratedReceiptNumber] = useState<string>("");
 
