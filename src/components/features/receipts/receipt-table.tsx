@@ -75,7 +75,7 @@ export function ReceiptTable({
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
 
-  const columns = useMemo<ColumnDef<EnrichedReceipt>[]>(
+  const columns = useMemo<ColumnDef<EnrichedReceipt, any>[]>(
     () => [
       columnHelper.accessor("receiptNumber", {
         header: "Receipt #",
