@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
-import { APP_NAME, APP_DESCRIPTION } from "@/lib/constants";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,10 +11,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    template: `%s | ${APP_NAME}`,
-    default: APP_NAME,
+    template: "%s | LeapStart Finance",
+    default: "LeapStart Finance & Admissions",
   },
-  description: APP_DESCRIPTION,
+  description: "Internal ERP for LeapStart School of Technology — manage student accounts, generate receipts, track payments, and run reports.",
 };
 
 export default function RootLayout({
