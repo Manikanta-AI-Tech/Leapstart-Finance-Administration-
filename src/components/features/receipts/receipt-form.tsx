@@ -278,8 +278,6 @@ export function ReceiptForm({ onSuccess }: ReceiptFormProps) {
     setCurrentStep(1);
     setPdfBlob(null);
     setGeneratedReceiptNumber("");
-    setGeneratedReceipt(null);
-    setGeneratedPdfData(null);
     setDirection("forward");
   }, [form]);
 
