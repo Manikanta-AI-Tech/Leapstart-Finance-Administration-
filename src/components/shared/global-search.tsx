@@ -78,7 +78,7 @@ export function GlobalSearch({ open, onClose }: Props) {
               ) : (
                 <div className="space-y-1">
                   {grouped.map(([grp, items], gi) => {
-                    let gs = 0; for (let i = 0; i < gi; i++) gs += grouped[i][1].length;
+                    let gs = 0; for (let i = 0; i < gi; i++) gs += grouped[i]?.[1]?.length ?? 0;
                     return (
                       <div key={grp}>
                         <p className="px-3 py-1.5 text-2xs font-medium text-neutral-400 uppercase tracking-wider">{grp}</p>
