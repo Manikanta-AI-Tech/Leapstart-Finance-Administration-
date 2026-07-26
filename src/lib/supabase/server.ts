@@ -37,7 +37,7 @@ export async function createClient() {
         delete: () => ({ eq: () => noop }),
       }),
       rpc: () => Promise.resolve({ data: null, error: null }),
-    } as ReturnType<typeof createServerClient>;
+    } as unknown as ReturnType<typeof createServerClient>;
   }
 
   const cookieStore = await cookies();

@@ -37,7 +37,7 @@ export function createClient() {
           delete: () => ({ eq: () => noop }),
         }),
         channel: () => ({ on: () => ({ subscribe: () => {} }) }),
-      } as ReturnType<typeof createBrowserClient>;
+      } as unknown as ReturnType<typeof createBrowserClient>;
     }
     throw new Error(
       "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY environment variables.",
