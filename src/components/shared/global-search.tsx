@@ -83,7 +83,7 @@ export function GlobalSearch({ open, onClose }: Props) {
                       <div key={grp}>
                         <p className="px-3 py-1.5 text-2xs font-medium text-neutral-400 uppercase tracking-wider">{grp}</p>
                         {items.map((item, i) => {
-                          const gi_idx = gs + i; const TI = typeIcons[item.type];
+                          const gi_idx = gs + i; const TI = typeIcons[item.type]!;
                           return (
                             <button key={item.id} type="button" onClick={() => { router.push(item.href); onClose(); }} onMouseEnter={() => setIdx(gi_idx)}
                               className={cn("flex items-center gap-3 w-full rounded-md px-3 py-2.5 text-left transition-colors duration-75",
